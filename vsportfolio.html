@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@layer base { 
+  html, body { margin: 0; padding: 0; } 
+  body { overscroll-behavior: none; } 
+  main > :first-child { margin-top: 0 !important; } 
+  main > :last-child { margin-bottom: 0 !important; } 
+} 
+::-webkit-scrollbar { display: none; }
+
+/* Global Smooth Color Transitions on Theme Toggle */
+body, header, nav, main, footer, section, div, a, button, span, p, h1, h2, h3 {
+  transition: background-color 0.28s ease, border-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+}
+
+/* Custom Keyframes & Micro-Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.28; transform: scale(1.08); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+
+/* Gradient Text Shimmer Animation */
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-shimmer-text {
+  background-size: 200% auto;
+  animation: textShimmer 5s ease-in-out infinite;
+}
+
+/* Terminal Cursor Blink */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: cursorBlink 1s infinite steps(2, start);
+}
+
+/* Professional Typography Reveal System */
+.text-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.text-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Stagger delay utility classes */
+.delay-1 { transition-delay: 0.05s; }
+.delay-2 { transition-delay: 0.1s; }
+.delay-3 { transition-delay: 0.15s; }
+.delay-4 { transition-delay: 0.2s; }
+.delay-5 { transition-delay: 0.25s; }
+.delay-6 { transition-delay: 0.3s; }
+.delay-7 { transition-delay: 0.35s; }
+.delay-8 { transition-delay: 0.4s; }
+
+/* Micro-interaction typography hover glow & letter tracking */
+.text-hover-track {
+  transition: letter-spacing 0.28s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease, filter 0.25s ease;
+}
+.text-hover-track:hover {
+  letter-spacing: 0.01em;
+  filter: drop-shadow(0 0 8px rgba(76, 215, 246, 0.35));
+}
+
+/* Section Title Hover Gradient Underline Animation */
+.shimmer-heading {
+  position: relative;
+  display: inline-block;
+  transition: letter-spacing 0.35s ease, transform 0.35s ease;
+}
+.shimmer-heading:hover {
+  letter-spacing: -0.01em;
+}
+.shimmer-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4cd7f6, #8083ff, #ddb7ff);
+  background-size: 200% auto;
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: textShimmer 3s ease infinite;
+}
+.shimmer-heading:hover::after {
+  width: 100%;
+}
+
+/* Stats Metric Glow Pulse */
+@keyframes metricGlow {
+  0%, 100% { text-shadow: 0 0 0px transparent; }
+  50% { text-shadow: 0 0 12px rgba(76, 215, 246, 0.4); }
+}
+.stat-highlight {
+  animation: metricGlow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 4.5s ease-in-out infinite 1.8s;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow-pulse 6s ease-in-out infinite alternate;
+}
+
+.animate-radar {
+  animation: pulse-dot 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Nav Link Hover Underline Glow */
+.nav-link {
+  position: relative;
+  transition: all 0.2s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4cd7f6, #8083ff);
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  opacity: 0;
+}
+.nav-link:hover::after {
+  width: 60%;
+  opacity: 1;
+}
+
+/* Accessible Reduced Motion Settings */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .text-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { 
+  darkMode: "class", 
+  theme: { 
+    extend: { 
+      "colors": { 
+        "on-surface": "#e3e1e9", 
+        "surface-container": "#1e1f25", 
+        "on-background": "#e3e1e9", 
+        "surface-variant": "#34343a", 
+        "surface-container-high": "#292a2f", 
+        "on-primary-fixed": "#07006c", 
+        "inverse-on-surface": "#2f3036", 
+        "inverse-primary": "#494bd6", 
+        "error": "#ffb4ab", 
+        "surface-tint": "#c0c1ff", 
+        "secondary": "#4cd7f6", 
+        "secondary-fixed-dim": "#4cd7f6", 
+        "on-tertiary": "#490080", 
+        "primary": "#c0c1ff", 
+        "primary-fixed-dim": "#c0c1ff", 
+        "on-surface-variant": "#c7c4d7", 
+        "primary-fixed": "#e1e0ff", 
+        "on-secondary-fixed-variant": "#004e5c", 
+        "surface": "#121318", 
+        "tertiary-container": "#b76dff", 
+        "on-primary-container": "#0d0096", 
+        "on-tertiary-fixed": "#2c0051", 
+        "secondary-container": "#03b5d3", 
+        "surface-container-lowest": "#0d0e13", 
+        "inverse-surface": "#e3e1e9", 
+        "secondary-fixed": "#acedff", 
+        "on-error": "#690005", 
+        "surface-container-highest": "#34343a", 
+        "tertiary-fixed": "#f0dbff", 
+        "surface-dim": "#121318", 
+        "on-tertiary-container": "#400071", 
+        "tertiary-fixed-dim": "#ddb7ff", 
+        "surface-bright": "#38393f", 
+        "surface-container-low": "#1a1b21", 
+        "on-secondary-fixed": "#001f26", 
+        "on-tertiary-fixed-variant": "#6900b3", 
+        "on-primary": "#1000a9", 
+        "on-primary-fixed-variant": "#2f2ebe", 
+        "error-container": "#93000a", 
+        "background": "#121318", 
+        "primary-container": "#8083ff", 
+        "outline": "#908fa0", 
+        "on-secondary": "#003640", 
+        "on-secondary-container": "#00424e", 
+        "tertiary": "#ddb7ff", 
+        "outline-variant": "#464554", 
+        "on-error-container": "#ffdad6" 
+      }, 
+      "borderRadius": { 
+        "DEFAULT": "0.125rem", 
+        "lg": "0.25rem", 
+        "xl": "0.5rem", 
+        "full": "0.75rem" 
+      }, 
+      "spacing": { 
+        "space-lg": "1.5rem", 
+        "margin-mobile": "1rem", 
+        "space-md": "1rem", 
+        "space-xs": "0.25rem", 
+        "gutter-mobile": "1rem", 
+        "gutter": "1.5rem", 
+        "margin": "2rem", 
+        "space-sm": "0.5rem", 
+        "space-xl": "2.5rem" 
+      }, 
+      "fontFamily": { 
+        "code-md": [ "JetBrains Mono" ], 
+        "headline-lg-mobile": [ "Plus Jakarta Sans" ], 
+        "body-lg": [ "Inter" ], 
+        "code-sm": [ "JetBrains Mono" ], 
+        "label-caps": [ "JetBrains Mono" ], 
+        "display": [ "Plus Jakarta Sans" ], 
+        "display-mobile": [ "Plus Jakarta Sans" ], 
+        "body-md": [ "Inter" ], 
+        "headline-sm": [ "Plus Jakarta Sans" ], 
+        "headline-md": [ "Plus Jakarta Sans" ], 
+        "headline-lg": [ "Plus Jakarta Sans" ], 
+        "body-sm": [ "Inter" ] 
+      }, 
+      "fontSize": { 
+        "code-md": [ "13px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" } ], 
+        "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], 
+        "body-lg": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], 
+        "code-sm": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], 
+        "label-caps": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" } ], 
+        "display": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], 
+        "display-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" } ], 
+        "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" } ], 
+        "headline-sm": [ "18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], 
+        "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], 
+        "headline-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], 
+        "body-sm": [ "12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" } ] 
+      } 
+    } 
+  } 
+};</script></head><body class="bg-slate-50 dark:bg-background font-body-md text-slate-800 dark:text-on-surface antialiased min-h-screen selection:bg-indigo-200 dark:selection:bg-primary-container selection:text-indigo-900 dark:selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.06)] border-b border-slate-200/80 dark:border-surface-variant/30 transition-all duration-300"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-space-md"><div class="flex items-center gap-3"><a class="flex items-center gap-3 group" href="#"><div class="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-400 to-indigo-600 dark:from-primary dark:via-secondary dark:to-primary-container p-px shadow-[0_0_12px_rgba(99,102,241,0.25)] dark:shadow-[0_0_12px_rgba(192,193,255,0.3)] group-hover:scale-105 transition-all duration-300"><div class="w-full h-full bg-white dark:bg-surface-container-lowest rounded-[11px] flex items-center justify-center"><span class="font-code-md font-bold text-[13px] bg-gradient-to-r from-indigo-600 to-sky-500 dark:from-primary dark:to-secondary bg-clip-text text-transparent group-hover:tracking-wider transition-all duration-200">ES</span></div></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-slate-900 dark:text-on-surface tracking-tight leading-none group-hover:text-indigo-600 dark:group-hover:text-primary transition-colors duration-200 text-reveal delay-1">Evan C Sabu</span><span class="font-label-caps text-label-caps text-sky-600 dark:text-secondary tracking-wider uppercase mt-1 flex items-center gap-1.5 text-reveal delay-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-secondary animate-radar"></span>B.Tech CSE AI • Dev</span></div></a></div><nav class="hidden md:flex items-center gap-1 bg-slate-100/90 dark:bg-surface-container/70 border border-slate-200 dark:border-surface-variant/30 p-1 rounded-full shadow-inner"><a class="nav-link px-4 py-1.5 rounded-full font-body-sm text-body-sm text-slate-600 dark:text-on-surface-variant hover:bg-white dark:hover:bg-surface-container-high hover:text-slate-900 dark:hover:text-on-surface hover:scale-105 transition-all duration-200" href="#about">About</a><a class="nav-link px-4 py-1.5 rounded-full font-body-sm text-body-sm text-slate-600 dark:text-on-surface-variant hover:bg-white dark:hover:bg-surface-container-high hover:text-slate-900 dark:hover:text-on-surface hover:scale-105 transition-all duration-200" href="#projects">Projects</a><a class="nav-link px-4 py-1.5 rounded-full font-body-sm text-body-sm text-slate-600 dark:text-on-surface-variant hover:bg-white dark:hover:bg-surface-container-high hover:text-slate-900 dark:hover:text-on-surface hover:scale-105 transition-all duration-200" href="#journey">Journey</a><a class="nav-link px-4 py-1.5 rounded-full font-body-sm text-body-sm text-slate-600 dark:text-on-surface-variant hover:bg-white dark:hover:bg-surface-container-high hover:text-slate-900 dark:hover:text-on-surface hover:scale-105 transition-all duration-200" href="#contact">Contact</a></nav><div class="flex items-center gap-2.5 sm:gap-3">
+<!-- Interactive Theme Toggle Button with Tooltip -->
+<div class="relative group">
+<button aria-label="Toggle Light and Dark Mode" class="relative flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-surface-container hover:bg-slate-200 dark:hover:bg-surface-container-high border border-slate-300/80 dark:border-surface-variant/60 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500/50" id="themeToggleBtn" type="button">
+<div class="relative w-5 h-5 flex items-center justify-center">
+<!-- Sun icon (shown in dark mode to switch to light) -->
+<span class="material-symbols-outlined text-[19px] text-amber-300 transition-all duration-300 absolute inset-0 flex items-center justify-center transform scale-100 rotate-0" id="themeSunIcon">light_mode</span>
+<!-- Moon icon (shown in light mode to switch to dark) -->
+<span class="material-symbols-outlined text-[19px] text-indigo-600 transition-all duration-300 absolute inset-0 flex items-center justify-center transform scale-0 -rotate-90 opacity-0" id="themeMoonIcon">dark_mode</span>
+</div>
+<span class="font-code-sm text-code-sm font-semibold text-slate-700 dark:text-on-surface-variant hidden sm:inline-block" id="themeModeText">Dark</span>
+</button>
+<!-- Floating Tooltip -->
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-slate-900 text-white dark:bg-surface-bright dark:text-on-surface font-code-sm text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 shadow-md">
+    Toggle theme
+  </div>
+</div>
+<a class="relative overflow-hidden inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-indigo-600 dark:bg-primary-container text-white dark:text-on-primary-container font-body-sm text-body-sm font-semibold hover:bg-indigo-700 dark:hover:bg-primary dark:hover:text-on-primary transition-all duration-200 shadow-md shadow-indigo-600/20 dark:shadow-primary-container/20 hover:shadow-indigo-500/30 hover:scale-105 active:scale-95 group" href="#contact"><span class="material-symbols-outlined text-[16px] text-white dark:text-on-primary-container group-hover:text-white dark:group-hover:text-on-primary group-hover:rotate-12 transition-transform duration-200">mail</span><span class="">Get in Touch</span></a></div></div></header><main class="w-full pt-16 bg-slate-50 dark:bg-background relative"><div class="max-w-7xl mx-auto px-6 lg:px-12"><div class="flex flex-col w-full">
+<!-- AMBIENT LIVING BACKDROP & LIGHT RAYS -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-gradient-to-b from-indigo-200/50 via-sky-200/40 to-transparent dark:from-primary-container/20 dark:via-secondary/15 dark:to-transparent blur-3xl pointer-events-none -z-10 rounded-full animate-glow"></div>
+<div class="absolute top-96 -left-32 w-96 h-96 bg-indigo-200/40 dark:bg-primary/10 blur-[100px] pointer-events-none -z-10 rounded-full animate-glow" style="animation-delay: 2s;"></div>
+<div class="absolute top-[800px] -right-32 w-[420px] h-[420px] bg-sky-200/40 dark:bg-secondary/10 blur-[110px] pointer-events-none -z-10 rounded-full animate-glow" style="animation-delay: 3.5s;"></div>
+<!-- 1. HERO SECTION -->
+<section class="relative pt-12 pb-20 lg:py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Hero Column -->
+<div class="lg:col-span-7 flex flex-col items-start gap-6">
+<!-- Live Status Badge -->
+<div class="hero-tag-reveal text-reveal delay-1 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-surface-container-high/70 backdrop-blur-md shadow-sm border border-slate-200 dark:border-surface-variant/40 hover:border-sky-400 dark:hover:border-secondary/50 hover:bg-slate-50 dark:hover:bg-surface-container-high transition-all duration-300">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 dark:bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500 dark:bg-secondary shadow-[0_0_8px_#4cd7f6] animate-radar"></span>
+</span>
+<span class="font-code-sm text-code-sm text-slate-600 dark:text-on-surface-variant tracking-wide">
+              Kerala, India • Available for Opportunities &amp; Collaborations
+            </span>
+</div>
+<!-- Main Hero Headline with Fluid Gradient Shimmer -->
+<div class="flex flex-col gap-2">
+<h1 class="hero-title-reveal text-reveal delay-2 font-display text-display tracking-tight text-slate-900 dark:text-on-surface leading-[1.08]">
+              Hey, I'm <span class="bg-gradient-to-r from-indigo-600 via-sky-400 to-purple-600 dark:from-primary dark:via-secondary dark:to-tertiary bg-clip-text text-transparent animate-shimmer-text font-bold inline-block hover:brightness-110 transition-all duration-300">Evan C Sabu</span>
+</h1>
+<!-- Interactive Cycling Dynamic Role Subtitle -->
+<div class="hero-role-reveal text-reveal delay-3 flex items-center gap-2 mt-1 min-h-[32px]">
+<p class="font-headline-sm text-headline-sm text-sky-600 dark:text-secondary font-medium tracking-tight">
+              B.Tech CSE AI Student at NIAT, Joy University • <span class="font-semibold bg-gradient-to-r from-indigo-600 to-sky-500 dark:from-primary dark:to-secondary bg-clip-text text-transparent inline-block transition-all duration-300" id="roleText" style="opacity: 1; transform: translateY(0px);">VibeCoder</span><span class="inline-block w-[2px] h-5 bg-sky-500 dark:bg-secondary ml-1 align-middle animate-blink"></span>
+</p>
+</div>
+</div>
+<!-- Crisp Tagline -->
+<p class="hero-desc-reveal text-reveal delay-4 font-body-lg text-body-lg text-slate-600 dark:text-on-surface-variant max-w-xl leading-relaxed">
+            Crafting smart, aesthetic web applications with code, AI, and creative energy. Blending high-speed execution with engineered precision to build modern digital products.
+          </p>
+<!-- Primary & Secondary CTA Cluster -->
+<div class="hero-cta-reveal text-reveal delay-5 flex flex-wrap items-center gap-3 pt-2">
+<a class="relative overflow-hidden inline-flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-600 dark:bg-primary-container text-white dark:text-on-primary-container font-headline-sm text-body-md font-semibold hover:bg-indigo-700 dark:hover:bg-primary dark:hover:text-on-primary transition-all duration-200 shadow-lg shadow-indigo-600/20 dark:shadow-primary-container/25 hover:shadow-indigo-500/30 hover:scale-105 active:scale-95 group" href="#projects">
+<span class="">Explore Projects</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-surface-container-high/80 text-slate-800 dark:text-on-surface font-body-md hover:bg-slate-100 dark:hover:bg-surface-variant border border-slate-200 dark:border-transparent hover:border-sky-400 dark:hover:border-secondary/40 transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 group" href="https://github.com/EvanCR7-ai" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-sky-600 dark:text-secondary group-hover:rotate-12 transition-transform duration-200">terminal</span>
+<span class="">GitHub Profile</span>
+<span class="material-symbols-outlined text-[14px] text-slate-500 dark:text-on-surface-variant group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">north_east</span>
+</a>
+</div>
+<!-- Social Quick Link Pills -->
+<div class="hero-social-reveal text-reveal delay-6 flex items-center gap-2 pt-2">
+<span class="font-label-caps text-label-caps uppercase text-slate-400 dark:text-outline mr-2 tracking-widest">Connect:</span>
+<a class="p-2.5 rounded-full bg-white dark:bg-surface-container text-slate-600 dark:text-on-surface-variant hover:text-sky-600 dark:hover:text-secondary hover:bg-slate-100 dark:hover:bg-surface-container-highest hover:scale-110 active:scale-95 transition-all duration-200 shadow-sm border border-slate-200/60 dark:border-transparent" href="https://github.com/EvanCR7-ai" rel="noopener noreferrer" target="_blank" title="GitHub">
+<svg class="w-4 h-4 fill-current transition-transform duration-200" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+</a>
+<a class="p-2.5 rounded-full bg-white dark:bg-surface-container text-slate-600 dark:text-on-surface-variant hover:text-indigo-600 dark:hover:text-primary hover:bg-slate-100 dark:hover:bg-surface-container-highest hover:scale-110 active:scale-95 transition-all duration-200 shadow-sm border border-slate-200/60 dark:border-transparent" href="https://www.linkedin.com/in/evan-c-sabu-809799440" rel="noopener noreferrer" target="_blank" title="LinkedIn">
+<svg class="w-4 h-4 fill-current transition-transform duration-200" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a><a class="p-2.5 rounded-full bg-white dark:bg-surface-container text-slate-600 dark:text-on-surface-variant hover:text-pink-500 dark:hover:text-secondary hover:bg-slate-100 dark:hover:bg-surface-container-highest hover:scale-110 active:scale-95 transition-all duration-200 shadow-sm border border-slate-200/60 dark:border-transparent" href="https://instagram.com/__.evaneyyy" rel="noopener noreferrer" target="_blank" title="Instagram @__.evaneyyy"><svg class="w-4 h-4 fill-current transition-transform duration-200" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+<a class="p-2.5 rounded-full bg-white dark:bg-surface-container text-slate-600 dark:text-on-surface-variant hover:text-purple-600 dark:hover:text-tertiary hover:bg-slate-100 dark:hover:bg-surface-container-highest hover:scale-110 active:scale-95 transition-all duration-200 shadow-sm border border-slate-200/60 dark:border-transparent" href="mailto:evansabu444@gmail.com" title="Email Direct">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+</div>
+</div>
+<!-- Right Hero Visual Showcase Card -->
+<div class="lg:col-span-5 relative"><div class="relative rounded-xl p-6 bg-white/90 dark:bg-surface-container/70 backdrop-blur-xl shadow-xl dark:shadow-2xl flex flex-col gap-5 overflow-hidden border border-slate-200/90 dark:border-surface-variant/40 hover:border-indigo-400/50 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] transition-all duration-500 group/card"><div class="absolute -top-12 -right-12 w-48 h-48 bg-indigo-300/20 dark:bg-primary/20 rounded-full blur-2xl pointer-events-none animate-glow"></div><div class="absolute -bottom-10 -left-10 w-44 h-44 bg-sky-300/20 dark:bg-secondary/20 rounded-full blur-2xl pointer-events-none animate-glow" style="animation-delay: 2s;"></div><div class="relative w-full rounded-xl overflow-hidden border border-slate-200 dark:border-surface-variant/40 shadow-lg group"><div class="relative h-80 sm:h-96 w-full overflow-hidden bg-slate-900 dark:bg-surface-container-lowest"><img alt="Evan C Sabu - Portrait" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_lao0iPHOQS8QxJa-OUogHfaLK-HUSxph_YKCdvZhKAYsfMMu3mgaXtAOh8Um_pJCW76b6xK7lscFNhIE5CzMFfnmWL5BytxeqwVIUiv_taIycMjPgGHGT4NJOqQi2bQhQIciqwsdLG6azxuvS0Jsg4tEDlnrXbQT7tAHhnL54MlL2l_ctL-BxY3oB20jpJcB-_hG_nDpG4c33rCyeqEOK67LDq6S4-iQyHbV34lKXCIGSQKlTiG6Ig"/><div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 dark:from-surface-container-lowest dark:via-surface-container-lowest/30 to-transparent"></div><div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none"><div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border border-white/10 dark:border-surface-variant/30 text-sky-400 dark:text-secondary font-code-sm text-code-sm shadow-sm animate-float"><span class="w-2 h-2 rounded-full bg-sky-400 dark:bg-secondary animate-radar"></span><span class="">Evan C Sabu • Joy Univ</span></div><div class="px-2.5 py-1 rounded-full bg-slate-900/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border border-white/10 dark:border-surface-variant/30 text-slate-200 dark:text-on-surface-variant font-code-sm text-code-sm flex items-center gap-1 animate-float-delayed"><span class="material-symbols-outlined text-[14px] text-indigo-300 dark:text-primary">verified</span><span class="">CSE AI</span></div></div><div class="absolute bottom-3 left-3 right-3 flex items-center justify-between"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-white dark:text-on-surface leading-tight font-bold group-hover:text-indigo-400 dark:group-hover:text-primary transition-colors duration-300 text-reveal delay-1 text-hover-track">Evan C Sabu</span><span class="font-code-sm text-code-sm text-sky-400 dark:text-secondary text-reveal delay-2">Frontend Dev &amp; VibeCoder</span></div><div class="px-2.5 py-1 rounded-full bg-sky-500/20 dark:bg-secondary/15 border border-sky-400/40 dark:border-secondary/30 text-sky-300 dark:text-secondary font-code-sm text-code-sm flex items-center gap-1.5 backdrop-blur-md hover:bg-sky-500/30 dark:hover:bg-secondary/25 transition-colors duration-200 text-reveal delay-3"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 dark:bg-secondary animate-radar"></span><span class="">120 wpm</span></div></div></div></div><div class="rounded-lg bg-slate-900 dark:bg-surface-container-lowest p-4 shadow-inner flex flex-col gap-2 font-code-md text-code-md border border-slate-800 dark:border-surface-variant/30 hover:border-indigo-500/40 dark:hover:border-primary/40 transition-colors duration-300 text-reveal delay-3"><div class="flex items-center justify-between pb-1"><div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-rose-500/70 dark:bg-error/60 hover:scale-125 transition-transform"></div><div class="w-2.5 h-2.5 rounded-full bg-amber-400/70 dark:bg-secondary-container/60 hover:scale-125 transition-transform"></div><div class="w-2.5 h-2.5 rounded-full bg-emerald-400/70 dark:bg-primary/60 hover:scale-125 transition-transform"></div></div><span class="font-code-sm text-code-sm text-slate-400 dark:text-outline flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>dev-profile.tsx</span></div><div class="space-y-1 text-slate-300 dark:text-on-surface-variant font-code-md text-code-md overflow-x-auto select-none text-[13px]"><p class=""><span class="text-purple-400 dark:text-tertiary">const</span> <span class="text-sky-400 dark:text-secondary">engineer</span> = {</p><p class="pl-4"><span class="text-slate-400 dark:text-outline">name:</span> <span class="text-indigo-300 dark:text-primary">"Evan C Sabu"</span>,</p><p class="pl-4"><span class="text-slate-400 dark:text-outline">focus:</span> <span class="text-indigo-300 dark:text-primary">"AI • Full-Stack Systems"</span>,</p><p class="pl-4"><span class="text-slate-400 dark:text-outline">academic:</span> <span class="text-indigo-300 dark:text-primary">"NIAT Joy University"</span>,</p><p class="pl-4 flex items-center"><span class="text-slate-400 dark:text-outline">status:</span> <span class="text-sky-300 dark:text-secondary-fixed">"Shipping clean vibes ⚡"</span><span class="inline-block w-1.5 h-3.5 bg-sky-400 dark:bg-secondary ml-1 animate-blink"></span></p><p class="">};</p></div></div><div class="grid grid-cols-3 gap-2 pt-1 text-center"><div class="p-2.5 rounded-lg bg-slate-100/90 dark:bg-surface-container-high/60 border border-slate-200 dark:border-surface-variant/20 flex flex-col items-center hover:bg-slate-200/70 dark:hover:bg-surface-container-high hover:border-indigo-400 dark:hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default group/metric text-reveal delay-4"><span class="font-headline-sm text-headline-sm text-indigo-600 dark:text-primary font-bold group-hover/metric:scale-110 transition-transform">1st</span><span class="font-code-sm text-code-sm text-slate-600 dark:text-on-surface-variant">B.Tech Year</span></div><div class="p-2.5 rounded-lg bg-slate-100/90 dark:bg-surface-container-high/60 border border-slate-200 dark:border-surface-variant/20 flex flex-col items-center hover:bg-slate-200/70 dark:hover:bg-surface-container-high hover:border-sky-400 dark:hover:border-secondary/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default group/metric text-reveal delay-5"><span class="font-headline-sm text-headline-sm text-sky-600 dark:text-secondary font-bold stat-highlight group-hover/metric:scale-110 transition-transform">100%</span><span class="font-code-sm text-code-sm text-slate-600 dark:text-on-surface-variant">Uptime Vibe</span></div><div class="p-2.5 rounded-lg bg-slate-100/90 dark:bg-surface-container-high/60 border border-slate-200 dark:border-surface-variant/20 flex flex-col items-center hover:bg-slate-200/70 dark:hover:bg-surface-container-high hover:border-purple-400 dark:hover:border-tertiary/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default group/metric text-reveal delay-6"><span class="font-headline-sm text-headline-sm text-purple-600 dark:text-tertiary font-bold group-hover/metric:scale-110 transition-transform">AI+Web</span><span class="font-code-sm text-code-sm text-slate-600 dark:text-on-surface-variant">Architecture</span></div></div></div></div>
+</div>
+</section>
+<!-- SECTION SEPARATOR HAIRLINE -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-surface-variant to-transparent my-10"></div>
+<!-- 2. ABOUT ME SECTION -->
+<section class="py-12 flex flex-col gap-8 scroll-mt-20" id="about">
+<div class="flex flex-col gap-2 max-w-2xl">
+<div class="flex items-center gap-2 text-reveal delay-1">
+<span class="font-label-caps text-label-caps uppercase text-sky-600 dark:text-secondary tracking-widest">01 // Bio &amp; Philosophy</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-slate-900 dark:text-on-surface shimmer-heading text-reveal delay-2">About Me</h2>
+<p class="font-body-lg text-body-lg text-slate-600 dark:text-on-surface-variant leading-relaxed text-reveal delay-3">
+          Currently a 1st-year B.Tech CSE (Artificial Intelligence) student at NIAT, Joy University. I blend full-stack web engineering with cutting-edge AI tools to build scalable, intuitive digital experiences with speed and creative agency.
+        </p>
+</div>
+<!-- 3 Persona Highlight Glass Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+<!-- Persona 1: VibeCoder -->
+<div class="relative group p-6 rounded-xl bg-white/90 dark:bg-surface-container/60 hover:bg-white dark:hover:bg-surface-container transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] border border-slate-200 dark:border-transparent hover:border-indigo-400/50 shadow-md flex flex-col justify-between gap-6 overflow-hidden text-reveal delay-2">
+<div class="absolute top-0 right-0 w-28 h-28 bg-indigo-200/30 dark:bg-primary/10 rounded-full blur-xl group-hover:bg-indigo-300/40 dark:group-hover:bg-primary/25 transition-all duration-300"></div>
+<div class="flex flex-col gap-3">
+<div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-primary-container/20 text-indigo-600 dark:text-primary flex items-center justify-center group-hover:scale-110 group-hover:bg-indigo-200 dark:group-hover:bg-primary-container/30 transition-all duration-200">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform duration-200">bolt</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-slate-900 dark:text-on-surface group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-sky-500 dark:group-hover:from-primary dark:group-hover:to-secondary transition-all duration-300 text-hover-track">VibeCoder</h3>
+<p class="font-body-md text-body-md text-slate-600 dark:text-on-surface-variant leading-relaxed">
+              Fast iteration, creative problem solving, and modern development workflows powered by LLMs and high-speed execution. Crafting sleek UI and rock-solid logic in minutes.
+            </p>
+</div>
+<div class="flex items-center gap-2 font-code-sm text-code-sm text-indigo-600 dark:text-primary font-medium">
+<span class="">• Rapid Prototyping</span>
+<span class="">• AI Native</span>
+</div>
+</div>
+<!-- Persona 2: Football Enthusiast -->
+<div class="relative group p-6 rounded-xl bg-white/90 dark:bg-surface-container/60 hover:bg-white dark:hover:bg-surface-container transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] border border-slate-200 dark:border-transparent hover:border-indigo-400/50 shadow-md flex flex-col justify-between gap-6 overflow-hidden text-reveal delay-3">
+<div class="absolute top-0 right-0 w-28 h-28 bg-sky-200/30 dark:bg-secondary/10 rounded-full blur-xl group-hover:bg-sky-300/40 dark:group-hover:bg-secondary/25 transition-all duration-300"></div>
+<div class="flex flex-col gap-3">
+<div class="w-10 h-10 rounded-lg bg-sky-100 dark:bg-secondary/20 text-sky-600 dark:text-secondary flex items-center justify-center group-hover:scale-110 group-hover:bg-sky-200 dark:group-hover:bg-secondary/30 transition-all duration-200">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-45 transition-transform duration-200">sports_soccer</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-slate-900 dark:text-on-surface group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-sky-500 group-hover:to-teal-400 dark:group-hover:from-secondary dark:group-hover:to-secondary-fixed transition-all duration-300 text-hover-track">Football Enthusiast</h3>
+<p class="font-body-md text-body-md text-slate-600 dark:text-on-surface-variant leading-relaxed">
+              High energy, strategic team player on and off the field. Passionate about teamwork, tactical discipline, speed under pressure, and continuous spatial game awareness.
+            </p>
+</div>
+<div class="flex items-center gap-2 font-code-sm text-code-sm text-sky-600 dark:text-secondary font-medium">
+<span class="">• Team Resilience</span>
+<span class="">• Strategy First</span>
+</div>
+</div>
+<!-- Persona 3: Cinema Buff -->
+<div class="relative group p-6 rounded-xl bg-white/90 dark:bg-surface-container/60 hover:bg-white dark:hover:bg-surface-container transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] border border-slate-200 dark:border-transparent hover:border-indigo-400/50 shadow-md flex flex-col justify-between gap-6 overflow-hidden text-reveal delay-4">
+<div class="absolute top-0 right-0 w-28 h-28 bg-purple-200/30 dark:bg-tertiary/10 rounded-full blur-xl group-hover:bg-purple-300/40 dark:group-hover:bg-tertiary/25 transition-all duration-300"></div>
+<div class="flex flex-col gap-3">
+<div class="w-10 h-10 rounded-lg bg-purple-100 dark:tertiary-container/20 text-purple-600 dark:text-tertiary flex items-center justify-center group-hover:scale-110 group-hover:bg-purple-200 dark:group-hover:bg-tertiary-container/30 transition-all duration-200">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform duration-200">movie</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-slate-900 dark:text-on-surface group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-500 dark:group-hover:from-tertiary dark:group-hover:to-primary transition-all duration-300 text-hover-track">Cinema Buff</h3>
+<p class="font-body-md text-body-md text-slate-600 dark:text-on-surface-variant leading-relaxed">
+              Inspired by storytelling, atmospheric world-building, and creative perspectives that fuel fresh UI/UX narratives and immersive visual pacing across the web.
+            </p>
+</div>
+<div class="flex items-center gap-2 font-code-sm text-code-sm text-purple-600 dark:text-tertiary font-medium">
+<span class="">• Narrative UX</span>
+<span class="">• Creative Flow</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION SEPARATOR HAIRLINE -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-surface-variant to-transparent my-10"></div>
+<!-- 3. FEATURED PROJECTS SECTION -->
+<section class="py-12 flex flex-col gap-8 scroll-mt-20" id="projects">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps uppercase text-sky-600 dark:text-secondary tracking-widest text-reveal delay-1">02 // Selected Deployments</span>
+<h2 class="font-headline-lg text-headline-lg text-slate-900 dark:text-on-surface shimmer-heading text-reveal delay-2">Featured Work</h2>
+<p class="font-body-md text-body-md text-slate-600 dark:text-on-surface-variant text-reveal delay-3">Things I've engineered, battle-tested, and shipped to the world.</p>
+</div>
+<div class="flex items-center gap-2 text-reveal delay-3">
+<span class="w-2.5 h-2.5 rounded-full bg-sky-500 dark:bg-secondary animate-radar"></span>
+<span class="font-code-sm text-code-sm text-slate-600 dark:text-on-surface-variant">Live Products &amp; Blueprints</span>
+</div>
+</div>
+<!-- Project Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Project 1: Re-Cell (Primary Featured Card) -->
+<div class="lg:col-span-12 xl:col-span-8 rounded-xl bg-white dark:bg-surface-container p-6 lg:p-8 flex flex-col justify-between gap-8 shadow-xl relative overflow-hidden group border border-slate-200 dark:border-transparent hover:border-indigo-400/50 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] transition-all duration-300 ease-out hover:-translate-y-1.5 text-reveal delay-2">
+<div class="absolute -top-16 -right-16 w-60 h-60 bg-sky-200/30 dark:bg-secondary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-sky-300/40 dark:group-hover:bg-secondary/25 group-hover:scale-110 transition-all duration-500"></div>
+<div class="flex flex-col gap-6">
+<!-- Badges Bar -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-sky-100 dark:bg-secondary/10 text-sky-700 dark:text-secondary font-code-sm text-code-sm font-semibold flex items-center gap-1.5 border border-sky-300 dark:border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-secondary animate-radar"></span> Live Production
+              </span>
+<span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-surface-container-high text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent">
+                Full-Stack Marketplace
+              </span>
+<span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-surface-container-high text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent">
+                Web App
+              </span>
+</div>
+<!-- Title & Narrative with Gradient Transition -->
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-lg text-headline-lg text-slate-900 dark:text-on-surface font-bold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-sky-500 group-hover:to-purple-600 dark:group-hover:from-primary dark:group-hover:via-secondary dark:group-hover:to-tertiary transition-all duration-300 text-hover-track">Re-Cell</h3>
+<p class="font-body-lg text-body-lg text-slate-600 dark:text-on-surface-variant leading-relaxed">
+                A modern online marketplace for buying and selling certified second-hand pre-owned smartphones safely and effortlessly. Engineered with smooth user onboarding, dynamic price estimators, and verified verification pipelines.
+              </p>
+</div>
+<!-- Visual Feature Highlights -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+<div class="p-3 rounded-lg bg-slate-50 dark:bg-surface-container-low flex flex-col gap-1 border border-slate-200/80 dark:border-surface-variant/20 hover:border-sky-400 dark:hover:border-secondary/40 hover:bg-slate-100/70 dark:hover:bg-surface-container-high/50 hover:-translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined text-sky-600 dark:text-secondary text-xl">speed</span>
+<span class="font-headline-sm text-body-md text-slate-800 dark:text-on-surface font-semibold text-hover-track">Instant Estimate</span>
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-on-surface-variant">Real-time fair valuation algorithm</span>
+</div>
+<div class="p-3 rounded-lg bg-slate-50 dark:bg-surface-container-low flex flex-col gap-1 border border-slate-200/80 dark:border-surface-variant/20 hover:border-indigo-400 dark:hover:border-primary/40 hover:bg-slate-100/70 dark:hover:bg-surface-container-high/50 hover:-translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined text-indigo-600 dark:text-primary text-xl">verified</span>
+<span class="font-headline-sm text-body-md text-slate-800 dark:text-on-surface font-semibold text-hover-track">Verified Reports</span>
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-on-surface-variant">Multi-point diagnostic inspection</span>
+</div>
+<div class="p-3 rounded-lg bg-slate-50 dark:bg-surface-container-low flex flex-col gap-1 border border-slate-200/80 dark:border-surface-variant/20 hover:border-purple-400 dark:hover:border-tertiary/40 hover:bg-slate-100/70 dark:hover:bg-surface-container-high/50 hover:-translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined text-purple-600 dark:text-tertiary text-xl">shopping_cart_checkout</span>
+<span class="font-headline-sm text-body-md text-slate-800 dark:text-on-surface font-semibold text-hover-track">Smooth Checkout</span>
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-on-surface-variant">Intuitive, frictionless buyer journey</span>
+</div>
+</div>
+<!-- Tech Badges -->
+<div class="flex flex-wrap items-center gap-1.5 pt-2">
+<span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-container-highest text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent cursor-default">React</span>
+<span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-container-highest text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent cursor-default">Tailwind CSS</span>
+<span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-container-highest text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent cursor-default">Full-Stack Architecture</span>
+<span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-container-highest text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent cursor-default">Responsive UI</span>
+<span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-surface-container-highest text-slate-700 dark:text-on-surface-variant font-code-sm text-code-sm border border-slate-200 dark:border-transparent cursor-default">Node.js</span>
+</div>
+</div>
+<!-- Live CTA Link -->
+<div class="pt-4 flex items-center justify-between border-t border-slate-200 dark:border-surface-variant/40">
+<span class="font-code-sm text-code-sm text-slate-500 dark:text-on-surface-variant">Deployed &amp; Publicly Accessible</span>
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-500 dark:bg-secondary text-white dark:text-on-secondary font-headline-sm text-body-md font-semibold hover:bg-sky-600 dark:hover:bg-secondary-fixed hover:shadow-[0_0_24px_rgba(76,215,246,0.5)] hover:scale-105 active:scale-95 transition-all duration-200 group/btn" href="https://re-cell-savvy.lovable.app/" rel="noopener noreferrer" target="_blank">
+<span class="">Live Demo</span>
+<span class="material-symbols-outlined text-[18px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION SEPARATOR HAIRLINE -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-surface-variant to-transparent my-10"></div>
+<!-- 4. JOURNEY & EXPERIENCE SECTION -->
+<section class="py-12 flex flex-col gap-8 scroll-mt-20" id="journey">
+<div class="flex flex-col gap-2 max-w-xl">
+<span class="font-label-caps text-label-caps uppercase text-sky-600 dark:text-secondary tracking-widest text-reveal delay-1">03 // Timeline</span>
+<h2 class="font-headline-lg text-headline-lg text-slate-900 dark:text-on-surface shimmer-heading text-reveal delay-2">Journey &amp; Milestones</h2>
+<p class="font-body-md text-body-md text-slate-600 dark:text-on-surface-variant text-reveal delay-3">The path of technical rigor, university foundations, and continuous development.</p>
+</div>
+<!-- Timeline Container -->
+<div class="relative pl-6 lg:pl-10 space-y-8 before:absolute before:left-2 lg:before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-300 dark:before:bg-surface-variant">
+<!-- Timeline Item 1 -->
+<div class="relative group text-reveal delay-2">
+<!-- Timeline Indicator Node -->
+<div class="absolute -left-6 lg:-left-10 top-1.5 w-5 h-5 rounded-full bg-white dark:bg-surface-container border-2 border-indigo-600 dark:border-primary flex items-center justify-center shadow-[0_0_12px_rgba(99,102,241,0.4)] dark:shadow-[0_0_12px_rgba(192,193,255,0.6)] group-hover:scale-125 transition-transform duration-300">
+<div class="w-2 h-2 rounded-full bg-indigo-600 dark:bg-primary animate-radar"></div>
+</div>
+<div class="p-6 rounded-xl bg-white dark:bg-surface-container/70 shadow-lg flex flex-col gap-4 border border-slate-200 dark:border-transparent hover:border-indigo-400/50 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] hover:-translate-y-1.5 transition-all duration-300 ease-out">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded bg-indigo-100 dark:bg-primary/10 text-indigo-700 dark:text-primary font-code-sm text-code-sm font-semibold border border-indigo-200 dark:border-primary/20">
+                  Year 1 • Present (2025 - 2026)
+                </span>
+<span class="font-code-sm text-code-sm text-slate-500 dark:text-on-surface-variant">B.Tech Academic Journey</span>
+</div>
+<span class="font-code-sm text-code-sm text-sky-600 dark:text-secondary font-medium">📍 Tamil Nadu / Kerala</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-headline-md text-slate-900 dark:text-on-surface group-hover:text-indigo-600 dark:group-hover:text-primary transition-colors duration-200 text-hover-track">NIAT, Joy University</h3>
+<p class="font-headline-sm text-body-md text-sky-600 dark:text-secondary font-medium">
+                B.Tech Computer Science Engineering (Artificial Intelligence) • Full Stack Developer &amp; AI Enthusiast
+              </p>
+</div>
+<p class="font-body-md text-body-md text-slate-600 dark:text-on-surface-variant leading-relaxed">
+              Mastering modern web architectures, UI/UX prototyping, full-stack deployment, and foundational machine learning principles. Actively building personal platforms, mastering data structures, and applying high-speed dev toolchains.
+            </p>
+<!-- Milestone Bullet Points -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+<div class="p-3 rounded-lg bg-slate-50 dark:bg-surface-container-low flex items-start gap-2.5 border border-slate-200/80 dark:border-surface-variant/20 hover:border-sky-400 dark:hover:border-secondary/40 hover:bg-slate-100/70 dark:hover:bg-surface-container-high/50 hover:-translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined text-sky-600 dark:text-secondary text-[20px] shrink-0">trophy</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-slate-800 dark:text-on-surface font-semibold text-hover-track">Hackathons</span>
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-on-surface-variant">Active participant and builder in university tech events.</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-slate-50 dark:bg-surface-container-low flex items-start gap-2.5 border border-slate-200/80 dark:border-surface-variant/20 hover:border-indigo-400 dark:hover:border-primary/40 hover:bg-slate-100/70 dark:hover:bg-surface-container-high/50 hover:-translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined text-indigo-600 dark:text-primary text-[20px] shrink-0">code</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-slate-800 dark:text-on-surface font-semibold text-hover-track">Open-Source</span>
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-on-surface-variant">Shipping code on GitHub and contributing to ecosystem libs.</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-slate-50 dark:bg-surface-container-low flex items-start gap-2.5 border border-slate-200/80 dark:border-surface-variant/20 hover:border-purple-400 dark:hover:border-tertiary/40 hover:bg-slate-100/70 dark:hover:bg-surface-container-high/50 hover:-translate-y-0.5 transition-all duration-200">
+<span class="material-symbols-outlined text-purple-600 dark:text-tertiary text-[20px] shrink-0">neurology</span>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-slate-800 dark:text-on-surface font-semibold text-hover-track">AI Tooling</span>
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-on-surface-variant">Passionate explorer of prompt-chaining and AI copilots.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION SEPARATOR HAIRLINE -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-surface-variant to-transparent my-10"></div>
+<!-- 6. CONTACT & CONNECT SECTION -->
+<section class="py-12 mb-16 flex flex-col gap-10 scroll-mt-20" id="contact">
+<!-- Contact Hero Panel -->
+<div class="rounded-xl bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-surface-container dark:via-surface-container dark:to-surface-container-high p-8 lg:p-12 shadow-xl dark:shadow-2xl relative overflow-hidden border border-slate-200 dark:border-surface-variant/40 hover:border-indigo-400/50 hover:shadow-[0_12px_36px_-6px_rgba(99,102,241,0.22)] transition-all duration-500 group">
+<div class="absolute -top-24 -right-24 w-80 h-80 bg-indigo-200/40 dark:bg-primary/15 rounded-full blur-3xl pointer-events-none animate-glow"></div>
+<div class="absolute -bottom-24 -left-24 w-80 h-80 bg-sky-200/40 dark:bg-secondary/15 rounded-full blur-3xl pointer-events-none animate-glow" style="animation-delay: 2s;"></div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto gap-6">
+<div class="text-reveal delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 dark:bg-secondary/10 text-sky-700 dark:text-secondary font-code-sm text-code-sm border border-sky-300 dark:border-secondary/20">
+<span class="w-2 h-2 rounded-full bg-sky-500 dark:bg-secondary animate-radar"></span>
+            Inbox Open &amp; Actively Monitoring
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-slate-900 dark:text-on-surface font-bold tracking-tight shimmer-heading text-reveal delay-2">
+            Let's Connect &amp; Build Something Great
+          </h2>
+<p class="font-body-lg text-body-lg text-slate-600 dark:text-on-surface-variant leading-relaxed text-reveal delay-3">
+            Whether you have an internship opportunity, collaboration idea, or just want to chat about tech, AI, and football, my inbox is always open!
+          </p>
+<!-- Interactive Email Container Card -->
+<div class="w-full max-w-xl p-4 rounded-xl bg-white/90 dark:bg-surface-container-lowest/80 backdrop-blur-md shadow-inner flex flex-col sm:flex-row items-center justify-between gap-4 mt-2 border border-slate-200 dark:border-surface-variant/30 hover:border-sky-400 dark:hover:border-secondary/40 transition-colors duration-200 text-reveal delay-4">
+<div class="flex items-center gap-3 pl-2">
+<span class="material-symbols-outlined text-sky-600 dark:text-secondary text-2xl animate-float">mail</span>
+<span class="font-code-md text-code-md text-slate-900 dark:text-on-surface font-medium select-all hover:text-indigo-600 dark:hover:text-primary transition-colors" id="emailText">evansabu444@gmail.com</span>
+</div>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<!-- One-click Copy Button -->
+<button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-slate-100 dark:bg-surface-container-high hover:bg-slate-200 dark:hover:bg-surface-variant text-slate-800 dark:text-on-surface font-code-sm text-code-sm hover:scale-105 active:scale-95 transition-all duration-150 shadow-sm border border-slate-200 dark:border-transparent" id="copyBtn" onclick="copyEmailToClipboard()">
+<span class="material-symbols-outlined text-[16px]" id="copyIcon">content_copy</span>
+<span class="" id="copyLabel">Copy</span>
+</button>
+<!-- Send Direct Email Mailto -->
+<a class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 dark:bg-primary-container hover:bg-indigo-700 dark:hover:bg-primary text-white dark:text-on-primary-container hover:text-white dark:hover:text-on-primary font-headline-sm text-code-sm font-semibold hover:scale-105 active:scale-95 transition-all duration-150 shadow-md hover:shadow-indigo-500/25" href="mailto:evansabu444@gmail.com">
+<span class="">Send Direct</span>
+<span class="material-symbols-outlined text-[14px]">send</span>
+</a>
+</div>
+</div>
+<!-- Toast feedback element (hidden by default) -->
+<div class="transition-opacity duration-200 opacity-0 pointer-events-none font-code-sm text-code-sm text-sky-700 dark:text-secondary bg-white dark:bg-surface-container-high px-3 py-1 rounded-full flex items-center gap-1.5 border border-sky-300 dark:border-secondary/30 shadow-sm" id="copyToast">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+            Copied email to clipboard!
+          </div>
+</div>
+</div>
+<!-- Social & Professional Grid Links -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- GitHub Card (Emerald / Cyan neon accent) -->
+<a class="relative p-6 rounded-xl bg-white dark:bg-surface-container/80 backdrop-blur-md border border-emerald-500/30 dark:border-emerald-500/20 hover:border-emerald-500 dark:hover:border-emerald-400/60 flex items-center justify-between group overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_36px_-6px_rgba(16,185,129,0.3)] shadow-sm text-reveal delay-1" href="https://github.com/EvanCR7-ai" rel="noopener noreferrer" target="_blank">
+<div class="absolute -top-12 -right-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-xl pointer-events-none group-hover:bg-emerald-500/25 transition-all duration-300"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_16px_rgba(16,185,129,0.4)] transition-all duration-200">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+</div>
+<div>
+<div class="font-headline-sm text-body-md text-slate-900 dark:text-on-surface font-semibold flex items-center gap-1.5 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors text-hover-track">GitHub <span class="text-emerald-600/80 dark:text-emerald-400/80 font-normal">@EvanCR7-ai</span></div>
+<div class="font-code-sm text-code-sm text-slate-500 dark:text-on-surface-variant">Active Repositories &amp; Code</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-outline group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:translate-x-1.5 transition-all duration-200 relative z-10">arrow_forward</span>
+</a>
+<!-- LinkedIn Card (Electric Blue accent) -->
+<a class="relative p-6 rounded-xl bg-white dark:bg-surface-container/80 backdrop-blur-md border border-blue-500/30 dark:border-blue-500/20 hover:border-blue-500 dark:hover:border-blue-400/60 flex items-center justify-between group overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_36px_-6px_rgba(59,130,246,0.3)] shadow-sm text-reveal delay-2" href="https://www.linkedin.com/in/evan-c-sabu-809799440" rel="noopener noreferrer" target="_blank">
+<div class="absolute -top-12 -right-12 w-28 h-28 bg-blue-500/10 rounded-full blur-xl pointer-events-none group-hover:bg-blue-500/25 transition-all duration-300"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/10 border border-blue-500/25 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20 group-hover:shadow-[0_0_16px_rgba(59,130,246,0.4)] transition-all duration-200">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</div>
+<div>
+<div class="font-headline-sm text-body-md text-slate-900 dark:text-on-surface font-semibold flex items-center gap-1.5 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors text-hover-track">LinkedIn</div>
+<div class="font-code-sm text-code-sm text-slate-500 dark:text-on-surface-variant">Evan C Sabu</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-outline group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1.5 transition-all duration-200 relative z-10">arrow_forward</span>
+</a>
+<!-- Instagram Card (Sunset Gradient & Fuchsia/Rose accent) -->
+<a class="relative p-6 rounded-xl bg-white dark:bg-surface-container/80 backdrop-blur-md border border-fuchsia-500/30 dark:border-fuchsia-500/25 hover:border-pink-500 dark:hover:border-pink-400/60 flex items-center justify-between group overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_36px_-6px_rgba(217,70,239,0.3)] shadow-sm text-reveal delay-3" href="https://instagram.com/__.evaneyyy" rel="noopener noreferrer" target="_blank">
+<div class="absolute -top-12 -right-12 w-28 h-28 bg-gradient-to-br from-amber-500/15 via-pink-500/15 to-purple-600/15 rounded-full blur-xl pointer-events-none group-hover:scale-125 transition-all duration-300"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500/20 via-pink-500/20 to-purple-600/20 border border-pink-500/30 flex items-center justify-center text-pink-500 dark:text-pink-400 group-hover:scale-110 group-hover:shadow-[0_0_16px_rgba(236,72,153,0.4)] transition-all duration-200">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</div>
+<div>
+<div class="font-headline-sm text-body-md text-slate-900 dark:text-on-surface font-semibold flex items-center gap-1.5 group-hover:text-pink-600 dark:group-hover:text-pink-300 transition-colors text-hover-track">Instagram</div>
+<div class="font-code-sm text-code-sm text-slate-500 dark:text-on-surface-variant">@__.evaneyyy</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-outline group-hover:text-pink-600 dark:group-hover:text-pink-400 group-hover:translate-x-1.5 transition-all duration-200 relative z-10">arrow_forward</span>
+</a>
+<!-- Location Card (Sunset Amber / Golden Coral accent) -->
+<div class="relative p-6 rounded-xl bg-white dark:bg-surface-container/80 backdrop-blur-md border border-amber-500/30 dark:border-amber-500/20 hover:border-amber-500 dark:hover:border-amber-400/60 shadow-sm hover:shadow-[0_12px_36px_-6px_rgba(245,158,11,0.25)] flex items-center justify-between group overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1.5 text-reveal delay-4">
+<div class="absolute -top-12 -right-12 w-28 h-28 bg-amber-500/10 rounded-full blur-xl pointer-events-none group-hover:bg-amber-500/25 transition-all duration-300"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500 dark:text-amber-400 group-hover:scale-110 group-hover:bg-amber-100 dark:group-hover:bg-amber-500/20 group-hover:shadow-[0_0_16px_rgba(245,158,11,0.4)] transition-transform duration-200">
+<span class="material-symbols-outlined text-2xl group-hover:animate-bounce">location_on</span>
+</div>
+<div>
+<div class="font-headline-sm text-body-md text-slate-900 dark:text-on-surface font-semibold group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors text-hover-track">Kerala, India</div>
+<div class="font-code-sm text-code-sm text-slate-500 dark:text-on-surface-variant">IST (UTC+5:30) Timezone</div>
+</div>
+</div>
+<span class="relative flex h-2.5 w-2.5 relative z-10">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 shadow-[0_0_8px_#f59e0b]"></span>
+</span>
+</div></div>
+<!-- Personalized Signature Footnote -->
+<div class="text-center pt-6 text-reveal delay-3">
+<p class="font-code-sm text-code-sm text-slate-500 dark:text-outline">
+          Designed &amp; Built by Evan C Sabu • Kerala, India • © 2026. Powered by modern code &amp; high vibe energy.
+        </p>
+</div>
+</section>
+</div>
+</div>
+<!-- CLIENT MICRO-INTERACTION SCRIPT & THEME SWITCHER -->
+<script>
+  // Typography Reveal Intersection Observer System
+  document.addEventListener("DOMContentLoaded", () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    // Auto-tag any text elements that don't already have text-reveal class
+    const textSelectors = "h1, h2, h3, h4, p, .font-display, .font-headline-lg, .font-headline-md, .font-headline-sm, .font-body-lg, .font-body-md, .font-body-sm, .font-code-md, .font-code-sm, .font-label-caps";
+    document.querySelectorAll(textSelectors).forEach((el, index) => {
+      if (!el.closest("header") && !el.closest("#themeToggleBtn") && !el.classList.contains("text-reveal") && !el.closest(".text-reveal")) {
+        el.classList.add("text-reveal");
+        const delayClass = `delay-${(index % 6) + 1}`;
+        el.classList.add(delayClass);
+      }
+    });
+
+    const revealElements = document.querySelectorAll(".text-reveal");
+
+    if (prefersReducedMotion) {
+      revealElements.forEach(el => el.classList.add("revealed"));
+      return;
+    }
+
+    // Hero immediate reveal sequence
+    const heroElements = [
+      document.querySelector(".hero-tag-reveal"),
+      document.querySelector(".hero-title-reveal"),
+      document.querySelector(".hero-role-reveal"),
+      document.querySelector(".hero-desc-reveal"),
+      document.querySelector(".hero-cta-reveal"),
+      document.querySelector(".hero-social-reveal")
+    ];
+
+    heroElements.forEach((el, idx) => {
+      if (el) {
+        setTimeout(() => {
+          el.classList.add("revealed");
+        }, 80 + idx * 90);
+      }
+    });
+
+    // Observer for rest of elements on scroll
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealElements.forEach(el => {
+      // If already has revealed class from hero pass, skip
+      if (!el.classList.contains("revealed")) {
+        observer.observe(el);
+      }
+    });
+  });
+
+  // Dynamic Role Cycling Subtitle Script
+  const roles = [
+    "Frontend Developer",
+    "VibeCoder",
+    "AI Systems Engineer",
+    "Creative Technologist"
+  ];
+  let currentRoleIdx = 0;
+  const roleTextEl = document.getElementById('roleText');
+
+  if (roleTextEl) {
+    setInterval(() => {
+      roleTextEl.style.opacity = '0';
+      roleTextEl.style.transform = 'translateY(6px)';
+      setTimeout(() => {
+        currentRoleIdx = (currentRoleIdx + 1) % roles.length;
+        roleTextEl.textContent = roles[currentRoleIdx];
+        roleTextEl.style.opacity = '1';
+        roleTextEl.style.transform = 'translateY(0)';
+      }, 300);
+    }, 2800);
+  }
+
+  // Theme Switching Implementation
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeSunIcon = document.getElementById('themeSunIcon');
+  const themeMoonIcon = document.getElementById('themeMoonIcon');
+  const themeModeText = document.getElementById('themeModeText');
+
+  function getStoredTheme() {
+    const stored = localStorage.getItem('portfolio-theme');
+    if (stored) return stored;
+    // Default to dark mode
+    return 'dark';
+  }
+
+  function applyTheme(theme) {
+    const html = document.documentElement;
+    if (theme === 'light') {
+      html.classList.remove('dark');
+      if (themeSunIcon) {
+        themeSunIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
+        themeSunIcon.classList.add('scale-0', 'rotate-90', 'opacity-0');
+      }
+      if (themeMoonIcon) {
+        themeMoonIcon.classList.remove('scale-0', '-rotate-90', 'opacity-0');
+        themeMoonIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
+      }
+      if (themeModeText) themeModeText.textContent = 'Light';
+    } else {
+      html.classList.add('dark');
+      if (themeSunIcon) {
+        themeSunIcon.classList.remove('scale-0', 'rotate-90', 'opacity-0');
+        themeSunIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
+      }
+      if (themeMoonIcon) {
+        themeMoonIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
+        themeMoonIcon.classList.add('scale-0', '-rotate-90', 'opacity-0');
+      }
+      if (themeModeText) themeModeText.textContent = 'Dark';
+    }
+    localStorage.setItem('portfolio-theme', theme);
+  }
+
+  // Initialize theme on load
+  const currentTheme = getStoredTheme();
+  applyTheme(currentTheme);
+
+  // Toggle button event
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+  }
+
+  // Clipboard copy helper
+  function copyEmailToClipboard() {
+    const email = "evansabu444@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      const copyLabel = document.getElementById("copyLabel");
+      const copyIcon = document.getElementById("copyIcon");
+      const copyToast = document.getElementById("copyToast");
+
+      if (copyLabel) copyLabel.textContent = "Copied!";
+      if (copyIcon) copyIcon.textContent = "done";
+      if (copyToast) {
+        copyToast.classList.remove("opacity-0");
+        copyToast.classList.add("opacity-100");
+      }
+
+      setTimeout(() => {
+        if (copyLabel) copyLabel.textContent = "Copy";
+        if (copyIcon) copyIcon.textContent = "content_copy";
+        if (copyToast) {
+          copyToast.classList.remove("opacity-100");
+          copyToast.classList.add("opacity-0");
+        }
+      }, 2400);
+    }).catch(err => {
+      console.error("Clipboard copy error:", err);
+    });
+  }
+</script></div></main><footer class="w-full bg-white dark:bg-surface-container-lowest py-space-xl mt-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.06)] border-t border-slate-200 dark:border-surface-variant/20"><div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-md text-slate-500 dark:text-on-surface-variant"><div class="flex items-center gap-space-sm"><img alt="Evan C Sabu Logo" class="h-6 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida/AEtjO1X7oOM8iEX5-1yNuIp-BbF7yDlkqM_3hxI0Y3OEDMkeRe1qAg4_W8xML83pC_lB1LZkO9oURrT_3tnIacpv38y_6gd-WVztyS3TK0KZVuZuAnNV3HSu7FyLoFrAobbWAWs-L8kct6v1sggppsW7yG7v0vWu8XcH5D3YUrJVDP7D5WCEkMevHEitKcA0pPK0CGq_ErsgTLbpw1harQSZ3O6NgpshhrEkYHLaAPFRPI-kdQ"/><span class="font-code-sm text-code-sm text-slate-600 dark:text-on-surface-variant">© 2024 Evan C Sabu. Crafted with high computational precision.</span></div><div class="flex items-center gap-space-lg font-code-sm text-code-sm"><a class="hover:text-slate-900 dark:hover:text-primary transition-colors" href="#about">About</a><a class="hover:text-slate-900 dark:hover:text-secondary transition-colors" href="#projects">Projects</a><a class="hover:text-slate-900 dark:hover:text-tertiary transition-colors" href="#journey">Journey</a><a class="hover:text-slate-900 dark:hover:text-primary transition-colors" href="#contact">Contact</a></div></div></footer>
+</body></html>
